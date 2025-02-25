@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Summarizer.DataAccess.Repository;
 using Summarizer.DataAccess.Repository.IRepository;
 using Summarizer.Utility;
 
@@ -9,7 +8,6 @@ namespace Contract.Summarizer.Controllers
     public class FormController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-
 
         public FormController(IUnitOfWork unitOfWork)
         {
@@ -29,6 +27,7 @@ namespace Contract.Summarizer.Controllers
         {
             ViewBag.ContractTypes = new SelectList(SD.contractType);
             ViewBag.Currency = new SelectList(SD.currency);
+            ViewBag.Departments = new SelectList(SD.department);
 
             return View();
         }
@@ -56,6 +55,7 @@ namespace Contract.Summarizer.Controllers
 
             ViewBag.ContractTypes = new SelectList(SD.contractType);
             ViewBag.Currency = new SelectList(SD.currency);
+            ViewBag.Departments = new SelectList(SD.department);
 
             if (form == null)
             {
@@ -68,12 +68,10 @@ namespace Contract.Summarizer.Controllers
         [HttpPost]
         public IActionResult Edit(Form form)
         {
-
             if (ModelState.IsValid)
             {
                 _unitOfWork.forms.Update(form);
                 _unitOfWork.Save();
-                
             }
 
             return RedirectToAction("Index");
@@ -89,10 +87,8 @@ namespace Contract.Summarizer.Controllers
                 _unitOfWork.Save();
 
             }
+
             return RedirectToAction("Index");
-
         }
-
-    
     }
 }

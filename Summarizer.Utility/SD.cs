@@ -22,5 +22,14 @@
             "EURO",
             "TL"
         };
+
+        public static readonly List<string> department = new()
+        {
+            "IDS",
+            "Finance",
+            "HR",
+            "Logistic",
+            "Sales"
+        };
     }
 }
