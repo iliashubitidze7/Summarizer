@@ -8,7 +8,7 @@ namespace Summarizer.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
-        IFormRepository summarizer { get; }
+        IFormRepository forms { get; }
 
 
         void Save();

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Summarizer.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDbInitializer : Migration
+    public partial class formDbCreation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,31 +58,30 @@ namespace Summarizer.DataAccess.Migrations
                 name: "Forms",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    FormId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StartingDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    Department = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Person = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    RelevantDirector = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    ContractStartingDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    ContractEndDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    DepartmentName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    PersonName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    RelevantDirectorName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     IdentificationCode = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     SupplierMail = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     ContractType = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Subject = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Amount = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Currency = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     IncludeTaxes = table.Column<bool>(type: "bit", nullable: false),
-                    VatPayer = table.Column<bool>(type: "bit", nullable: false),
-                    PaymentTerm = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    PaymentTerm = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     PayTerm60 = table.Column<bool>(type: "bit", nullable: false),
                     CompletionOrDeliveryDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    DeliveryAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UsageType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ContractEndDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    Note = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    DeliveryAddress = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Note = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Forms", x => x.Id);
+                    table.PrimaryKey("PK_Forms", x => x.FormId);
                 });
 
             migrationBuilder.CreateTable(

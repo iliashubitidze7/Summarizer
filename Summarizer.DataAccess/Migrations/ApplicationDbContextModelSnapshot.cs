@@ -24,11 +24,16 @@ namespace Summarizer.DataAccess.Migrations
 
             modelBuilder.Entity("Form", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FormId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FormId"));
+
+                    b.Property<string>("Amount")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateOnly>("CompletionOrDeliveryDate")
                         .HasColumnType("date");
@@ -36,17 +41,25 @@ namespace Summarizer.DataAccess.Migrations
                     b.Property<DateOnly>("ContractEndDate")
                         .HasColumnType("date");
 
+                    b.Property<DateOnly>("ContractStartingDate")
+                        .HasColumnType("date");
+
                     b.Property<string>("ContractType")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Currency")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("DeliveryAddress")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("Department")
+                    b.Property<string>("DepartmentName")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
@@ -61,56 +74,41 @@ namespace Summarizer.DataAccess.Migrations
 
                     b.Property<string>("Note")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<bool>("PayTerm60")
                         .HasColumnType("bit");
 
                     b.Property<string>("PaymentTerm")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("Person")
+                    b.Property<string>("PersonName")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("RelevantDirector")
+                    b.Property<string>("RelevantDirectorName")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<DateOnly>("StartingDate")
-                        .HasColumnType("date");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("SupplierMail")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("UsageType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<bool>("VatPayer")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
+                    b.HasKey("FormId");
 
                     b.ToTable("Forms");
                 });

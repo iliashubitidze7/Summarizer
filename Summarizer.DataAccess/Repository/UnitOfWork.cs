@@ -11,12 +11,12 @@ namespace Summarizer.DataAccess.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext db;
-        public IFormRepository summarizer {  get; private set; }
+        public IFormRepository forms {  get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
-        {
+        {   
             this.db = db;
-            summarizer = new FormRepository(db);
+            forms = new FormRepository(db);
         }
 
         public void Save()
