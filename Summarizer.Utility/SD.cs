@@ -7,5 +7,20 @@
         public const string Role_Director = "Director";
         public const string Role_Legal = "Legal";
 
+
+        public static readonly List<string> contractType = new()
+        {
+            "Purchasing Good",
+            "Service",
+            "Leasing"
+        };
+
+        public static readonly List<string> currency = new()
+        {
+            "GEL",
+            "USD",
+            "EURO",
+            "TL"
+        };
     }
 }

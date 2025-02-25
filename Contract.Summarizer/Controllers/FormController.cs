@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Summarizer.DataAccess.Repository;
 using Summarizer.DataAccess.Repository.IRepository;
+using Summarizer.Utility;
 
 namespace Contract.Summarizer.Controllers
 {
@@ -26,20 +27,8 @@ namespace Contract.Summarizer.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.ContractTypes = new SelectList(new List<string>
-                {
-                    "Purchasing Good",
-                    "Service",
-                    "Leasing",
-                });
-
-            ViewBag.Currency = new SelectList(new List<string>
-                {
-                    "GEL",
-                    "USD",
-                    "EURO",
-                    "TL"
-                });
+            ViewBag.ContractTypes = new SelectList(SD.contractType);
+            ViewBag.Currency = new SelectList(SD.currency);
 
             return View();
         }
@@ -49,7 +38,6 @@ namespace Contract.Summarizer.Controllers
         {
             if (form != null)
             {
-                
                 _unitOfWork.forms.Add(form);
                 _unitOfWork.Save();
 
@@ -66,20 +54,8 @@ namespace Contract.Summarizer.Controllers
 
             Form form = _unitOfWork.forms.Get(x => x.FormId == id);
 
-            ViewBag.ContractTypes = new SelectList(new List<string>
-                {
-                    "Purchasing Good",
-                    "Service",
-                    "Leasing",
-                });
-
-            ViewBag.Currency = new SelectList(new List<string>
-                {
-                    "GEL",
-                    "USD",
-                    "EURO",
-                    "TL"
-                });
+            ViewBag.ContractTypes = new SelectList(SD.contractType);
+            ViewBag.Currency = new SelectList(SD.currency);
 
             if (form == null)
             {
